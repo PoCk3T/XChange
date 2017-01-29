@@ -201,8 +201,9 @@ public class Currency implements Comparable<Currency> {
   public static final Currency TZS = createCurrency("TZS", "Tanzanian Shilling", null);
   public static final Currency UAH = createCurrency("UAH", "Ukrainian Hryvnia", null);
   public static final Currency UGX = createCurrency("UGX", "Ugandan Shilling", null);
-  public static final Currency USD = createCurrency("USD", "United States Dollar", null);
+  public static final Currency USD = createCurrency("USD", "United States Dollar", "USDT");
   public static final Currency USDE = createCurrency("USDE", "Unitary Status Dollar eCoin", null);
+  public static final Currency USDT = getInstance("USDT");
   public static final Currency UTC = createCurrency("UTC", "Ultracoin", null);
   public static final Currency UYU = createCurrency("UYU", "Uruguayan Peso", null);
   public static final Currency UZS = createCurrency("UZS", "Uzbekistan Som", null);
