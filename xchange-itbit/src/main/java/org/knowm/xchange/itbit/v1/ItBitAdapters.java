@@ -1,12 +1,6 @@
 package org.knowm.xchange.itbit.v1;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.*;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order.OrderType;
@@ -31,7 +25,12 @@ import org.knowm.xchange.itbit.v1.dto.trade.ItBitTradeHistory;
 import org.knowm.xchange.itbit.v1.dto.trade.ItBitUserTrade;
 import org.knowm.xchange.utils.DateUtils;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class ItBitAdapters {
 
@@ -216,7 +215,7 @@ public final class ItBitAdapters {
     BigDecimal volume = itBitTicker.getVolume24h();
     Date timestamp = itBitTicker.getTimestamp() != null ? parseDate(itBitTicker.getTimestamp()) : null;
 
-    return new Ticker.Builder().currencyPair(currencyPair).last(last).bid(bid).ask(ask).high(high).low(low).volume(volume).timestamp(timestamp)
+    return new Ticker.Builder().currencyPair(new CurrencyPair(adaptCurrency(currencyPair.base), adaptCurrency(currencyPair.counter))).last(last).bid(bid).ask(ask).high(high).low(low).volume(volume).timestamp(timestamp)
         .build();
   }
 
