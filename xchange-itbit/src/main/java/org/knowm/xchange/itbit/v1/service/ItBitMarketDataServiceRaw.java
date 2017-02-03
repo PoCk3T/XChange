@@ -1,12 +1,14 @@
 package org.knowm.xchange.itbit.v1.service;
 
-import java.io.IOException;
-
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.itbit.v1.dto.marketdata.ItBitDepth;
 import org.knowm.xchange.itbit.v1.dto.marketdata.ItBitTicker;
 import org.knowm.xchange.itbit.v1.dto.marketdata.ItBitTrades;
+
+import java.io.IOException;
+
+import static org.knowm.xchange.itbit.v1.ItBitAdapters.adaptCurrency;
 
 public class ItBitMarketDataServiceRaw extends ItBitBaseService {
 
@@ -22,7 +24,7 @@ public class ItBitMarketDataServiceRaw extends ItBitBaseService {
 
   public ItBitTicker getItBitTicker(CurrencyPair currencyPair) throws IOException {
 
-    ItBitTicker ticker = itBitAuthenticated.getTicker(currencyPair.base.getCurrencyCode(), currencyPair.counter.getCurrencyCode());
+    ItBitTicker ticker = itBitAuthenticated.getTicker(adaptCurrency(currencyPair.base).getCurrencyCode(), adaptCurrency(currencyPair.counter).getCurrencyCode());
 
     return ticker;
   }
